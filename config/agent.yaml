@@ -1,0 +1,22 @@
+# Agent Manifest - AgentRegistry static entry point.
+# Root-level keys only; `class` is a single dotted import path.
+# Runtime-tunable parameters live in config/config.yaml, not here.
+
+id: RET-C2-313
+name: RetailGmcOperationsQAAgent
+namespace: ret
+version: 0.1.0
+enabled: true
+description: Retail Google Merchant Center & Google Shopping Operations Q&A Agent
+class: src.graph.graph.RetailGmcOperationsQAGraph
+category: Cat 2
+industry: RET
+base_type: RAGAgent
+generation_mode: deterministic
+# S-1 agent default trust level (standard business operation).
+required_trust_level: VERIFIED_EXTERNAL
+requires:
+  # The graph never calls ctx.secrets.require(); the optional LLM key is read only by
+  # the standalone entry point, which degrades to the deterministic path without it.
+  secrets: []
+  extras: []
